@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/default">
+<body>
+<div id="page" layout:fragment="content">
+    <form method="POST" class="form-signin" th:object="${ofertaForm}" th:action="@{/pojazdy/dodaj}">
+        <h2 class="form-signin-heading">Utwórz pojazd</h2>
+
+        <div class="form-group">
+            <input type="text" th:field="*{status}" class="form-control" placeholder="status*" autofocus="true">
+            <span class="has-error" th:if="${#fields.hasErrors('status')}" th:errors="*{status}"></span>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Wyślij</button>
+    </form>
+</div>
+</body>
+</html>

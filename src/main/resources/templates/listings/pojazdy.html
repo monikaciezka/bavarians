@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/default">
+<body>
+<div id="page" layout:fragment="content">
+    <div style="float:right;">
+        <div class="button-wrapper">
+            <a href="/pojazdy/dodaj" role="button">
+                    <span class="button-content-wrapper">
+						<span class="button-text">Utwórz</span>
+		            </span>
+            </a>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead class="thead-primary">
+        <tr>
+            <th>Marka</th>
+            <th>Model</th>
+            <th>Numer Rejestracyjny</th>
+            <th>VIN</th>
+            <th>Przebieg</th>
+            <th>Edycja</th>
+            <th>Usuwanie</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${pojazdy}">
+            <td th:text="${item.marka}"></td>
+            <td th:text="${item.model}"></td>
+            <td th:text="${item.numerRejestracyjny}"></td>
+            <td th:text="${item.vin}"></td>
+            <td th:text="${item.przebieg}"></td>
+            <td><a th:href="@{/pojazdy/edytuj/{id}(id=${item.id})}">Edytuj</a></td>
+            <td><a th:href="@{/pojazdy/usun/{id}(id=${item.id})}">Usuń</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

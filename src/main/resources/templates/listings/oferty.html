@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/default">
+<body>
+<div id="page" layout:fragment="content">
+    <div style="float:right;">
+        <div class="button-wrapper">
+            <a href="/oferty/dodaj" role="button">
+                    <span class="button-content-wrapper">
+						<span class="button-text">Nowe oferta</span>
+		            </span>
+            </a>
+        </div>
+    </div>
+    <table class="table">
+        <thead class="thead-primary">
+        <tr>
+            <th>Numer oferty</th>
+            <th>Data utworzenia</th>
+            <th>Pojazd</th>
+            <th>Edytuj</th>
+            <th>Usuń</th>
+            <th>Szczegóły</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${oferty}">
+            <td th:text="${item.id}"><a href="/oferty/${item.id}">Oferta</a></td>
+            <td th:text="${item.dataUtworzenia}"></td>
+            <td th:text="${item.pojazd?.marka + ' ' + item.pojazd?.model + ' '  + item.pojazd?.numerRejestracyjny}"></td>
+            <td><a th:href="@{/oferty/edytuj/{id}(id=${item.id})}">Edytuj</a></td>
+            <td><a th:href="@{/oferty/usun/{id}(id=${item.id})}">Usuń</a></td>
+            <td><a th:href="@{/oferty/{id}(id=${item.id})}">Szczegóły</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

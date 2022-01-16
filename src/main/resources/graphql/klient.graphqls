@@ -1,0 +1,33 @@
+type Pojazd {
+    id: ID!
+    vin: String!
+    numerRejestracyjny: String
+    wlasciciel: Klient
+}
+
+type Klient {
+    id: ID!
+	imie: String!
+	nazwisko: String!
+    email: String!
+    haslo: String!
+    pojazdy: [Pojazd!] @relation
+}
+
+# Root
+type Query {
+}
+
+# Root
+type Mutation {
+}
+
+extend type Query {
+    findAllPojazd: [Pojazd]!
+}
+
+extend type Mutation {
+    createKlient(imie: String, nazwisko: String, haslo: String): Klient!
+    #	updatePojazd(id: ID!, title: String, description: String): Pojazd!
+    #	deletePojazd(id: ID!): Boolean
+}

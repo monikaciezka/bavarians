@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/default">
+<body>
+<div id="page" layout:fragment="content">
+    <form action="" method="post">
+        <span class="button-content-wrapper float-right">
+			 <button class="add_field_button">Dodaj nowy element oferty</button>
+		 </span>
+    </form>
+    <form method="POST" class="table" th:object="${ofertaForm}" th:action="@{/oferty/dodaj}">
+        <h2> Kosztorys Naprawy</h2>
+        <div>
+            <div class="samochod-input-block">
+                Samochód
+                <div><input type="text" th:field="*{pojazd.marka}" class="form-control" placeholder="Marka" autofocus="true"></div>
+                <div><input type="text" th:field="*{pojazd.model}" class="form-control" placeholder="Model"></div>
+                <div><input type="text" th:field="*{pojazd.numerRejestracyjny}" class="form-control" placeholder="Numer Rejestracyjny"></div>
+                <div><input type="text" th:field="*{pojazd.vin}" class="form-control" placeholder="VIN"></div>
+                <div><input type="text" th:field="*{pojazd.przebieg}" class="form-control" placeholder="Przebieg"></div>
+            </div>
+
+            <table class="table">
+                <thead class="thead-primary">
+                <tr>
+                    <th width="60%">Wykaz czynności i elementów</th>
+                    <th>Robocizna [netto]</th>
+                    <th>Części [brutto]</th>
+                    <th>Usuń</th>
+                </tr>
+                </thead>
+                <tbody class="bavarians_oferty_input_fields_wrap">
+                <tr>
+                    <td width="60%"><input type="text" name="elementySerwisowe[0].nazwa" id="elementySerwisowe0.nazwa" class="form-control"></td>
+                    <td><input type="text" pattern="^\d*(\.\d{0,2})?$" name="elementySerwisowe[0].cenaRobociznyNetto" id="elementySerwisowe0.cenaRobociznyNetto" class="form-control"></td>
+                    <td><input type="text" pattern="^\d*(\.\d{0,2})?$" name="elementySerwisowe[0].cenaCzesciBrutto" id="elementySerwisowe0.cenaCzesciBrutto" class="form-control"></td>
+                    <td>
+                        <button class="btn btn-outline-danger remove_field" type="button">Usuń</button>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Zapisz</button>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>
