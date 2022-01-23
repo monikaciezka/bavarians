@@ -5,7 +5,7 @@ import com.bavarians.graphql.repository.ElementRepository;
 import com.bavarians.graphql.repository.KlientRepository;
 import com.bavarians.graphql.repository.PojazdRepository;
 import com.bavarians.service.OfertaService;
-import com.bavarians.service.impl.DefaultUserDetailsService;
+import com.bavarians.service.impl.KlientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +19,7 @@ import static com.bavarians.controller.PagesConstants.WELCOME_PAGE;
 @Controller
 public class PageController {
     @Autowired
-    private DefaultUserDetailsService userService;
+    private KlientService userService;
     @Autowired
     private OfertaService ofertaService;
     @Autowired

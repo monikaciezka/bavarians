@@ -5,6 +5,7 @@ import com.bavarians.dto.JwtRequest;
 import com.bavarians.dto.JwtResponse;
 import com.bavarians.dto.UserDto;
 import com.bavarians.service.impl.DefaultUserDetailsService;
+import com.bavarians.service.impl.KlientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,6 +29,9 @@ public class JwtAuthenticationController {
     @Autowired
     private DefaultUserDetailsService userDetailsService;
 
+    @Autowired
+    private KlientService klientService;
+
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
@@ -39,7 +43,7 @@ public class JwtAuthenticationController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<?> saveUser(@RequestBody UserDto user) throws Exception {
-        return ResponseEntity.ok(userDetailsService.save(user));
+        return ResponseEntity.ok(klientService.save(user));
     }
 
     private void authenticate(String username, String password) throws Exception {
