@@ -1,7 +1,6 @@
 package com.bavarians.controller;
 
 import com.bavarians.graphql.model.Klient;
-import com.bavarians.graphql.resolver.Mutation;
 import com.bavarians.service.SecurityService;
 import com.bavarians.service.UserService;
 import com.bavarians.service.impl.DefaultUserDetailsService;
@@ -24,8 +23,7 @@ public class LoginController {
     private UserValidator userValidator;
     @Autowired
     private DefaultUserDetailsService defaultUserDetailsService;
-    @Autowired
-    private Mutation mutation;
+
 
     @GetMapping("/registration")
     public String registration(Model model) {
