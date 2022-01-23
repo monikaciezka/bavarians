@@ -66,7 +66,7 @@ public class OfertaController {
         ArrayList<Element> elementySerwisoweToSave = new ArrayList<>();
         List<Element> elementySerwisowe = ofertaForm.getElementySerwisowe();
         for (Element e : elementySerwisowe) {
-            if (StringUtils.isNoneBlank(e.getNazwa())) {
+            if (StringUtils.isNotBlank(e.getNazwa())) {
                 e.setOferta(ofertaForm);
                 elementySerwisoweToSave.add(e);
             }
@@ -130,7 +130,7 @@ public class OfertaController {
             elementRepository.deleteAll(o.getElementySerwisowe());
             List<Element> elementySerwisowe = ofertaForm.getElementySerwisowe();
             elementySerwisowe.forEach(ee ->{
-                if (StringUtils.isNoneBlank(ee.getNazwa())) {
+                if (StringUtils.isNotBlank(ee.getNazwa())) {
                     ee.setOferta(ofertaForm);
                 }
             });
