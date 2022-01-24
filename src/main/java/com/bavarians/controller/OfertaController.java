@@ -6,17 +6,29 @@ import com.bavarians.graphql.model.Pojazd;
 import com.bavarians.graphql.repository.ElementRepository;
 import com.bavarians.graphql.repository.PojazdRepository;
 import com.bavarians.service.OfertaService;
+import com.bavarians.service.impl.PdfCreator;
+import com.itextpdf.text.DocumentException;
 import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
+import static java.lang.String.format;
 
 @Controller
 @RequestMapping("oferty")
@@ -28,6 +40,8 @@ public class OfertaController {
     private PojazdRepository pojazdRepository;
     @Autowired
     private ElementRepository elementRepository;
+    @Autowired
+    private PdfCreator pdfCreator;
 
     @GetMapping
     public String oferty(Model model) {
@@ -129,7 +143,7 @@ public class OfertaController {
         ofertaOptional.ifPresent(o -> {
             elementRepository.deleteAll(o.getElementySerwisowe());
             List<Element> elementySerwisowe = ofertaForm.getElementySerwisowe();
-            elementySerwisowe.forEach(ee ->{
+            elementySerwisowe.forEach(ee -> {
                 if (StringUtils.isNotBlank(ee.getNazwa())) {
                     ee.setOferta(ofertaForm);
                 }
@@ -142,5 +156,37 @@ public class OfertaController {
 
 
         return "redirect:/oferty/edytuj/" + id;
+    }
+
+    @GetMapping("/pdf/{id}")
+    private void generujPdf(@PathVariable("id") Long id, HttpServletResponse response) throws IOException {
+        Optional<Oferta> oneWithPojazd = ofertaService.findById(id);
+        try {
+            if (oneWithPojazd.isPresent()) {
+                String filename = oneWithPojazd.map(this::getFilename).orElse("oferta-" + id);
+                pdfCreator.createOfferPdf(filename, oneWithPojazd.get());
+                response.setContentType("application/pdf");
+                response.setHeader("Content-Disposition","attachment; filename="+ URLEncoder.encode(filename, "UTF-8"));
+                InputStream inputStream = new FileInputStream(filename);
+                int nRead;
+                while ((nRead = inputStream.read()) != -1) {
+                    response.getWriter().write(nRead);
+                }
+                File file = new File(filename);
+                boolean delete = file.delete();
+                System.out.println(delete);
+            }
+
+        } catch (DocumentException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @NotNull
+    private String getFilename(Oferta oferta) {
+        return format("%s-%s-%s.pdf",
+                oferta.getPojazd().getMarka(),
+                oferta.getPojazd().getModel(),
+                oferta.getId());
     }
 }

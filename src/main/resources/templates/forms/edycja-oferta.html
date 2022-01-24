@@ -19,6 +19,7 @@
         <div>
             <div class="samochod-input-block">
                 Samochód
+                <input type="hidden" th:field="*{pojazd.id}">
                 <div><input type="text" th:field="*{pojazd.marka}" class="form-control" placeholder="Marka" autofocus="true"></div>
                 <div><input type="text" th:field="*{pojazd.model}" class="form-control" placeholder="Model"></div>
                 <div><input type="text" th:field="*{pojazd.numerRejestracyjny}" class="form-control" placeholder="Numer Rejestracyjny"></div>
