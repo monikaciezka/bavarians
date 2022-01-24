@@ -21,10 +21,11 @@
             <th>Marka</th>
             <th>Model</th>
             <th>Numer Rejestracyjny</th>
-            <th>VIN</th>
-            <th>Przebieg</th>
+<!--            <th>VIN</th>-->
+<!--            <th>Przebieg</th>-->
             <th>Edycja</th>
             <th>Usuwanie</th>
+            <th>Tworzenie oferty</th>
         </tr>
         </thead>
         <tbody>
@@ -32,10 +33,11 @@
             <td th:text="${item.marka}"></td>
             <td th:text="${item.model}"></td>
             <td th:text="${item.numerRejestracyjny}"></td>
-            <td th:text="${item.vin}"></td>
-            <td th:text="${item.przebieg}"></td>
+<!--            <td th:text="${item.vin}"></td>-->
+<!--            <td th:text="${item.przebieg}"></td>-->
             <td><a th:href="@{/pojazdy/edytuj/{id}(id=${item.id})}">Edytuj</a></td>
             <td><a th:href="@{/pojazdy/usun/{id}(id=${item.id})}">Usuń</a></td>
+            <td><a th:href="@{/pojazdy/nowa-oferta/{pojazdId}(pojazdId=${item.id})}">Utwórz ofertę</a></td>
         </tr>
         </tbody>
     </table>

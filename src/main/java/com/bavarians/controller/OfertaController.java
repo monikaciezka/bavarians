@@ -54,7 +54,7 @@ public class OfertaController {
         if (bindingResult.hasErrors()) {
             return PagesConstants.NOWA_OFERTA_PAGE;
         }
-        ofertaForm.setDataUtworzenia(new Date());
+        ofertaForm.setEdytowano(new Date());
         Pojazd pojazd = ofertaForm.getPojazd();
         if (pojazd != null) {
             if (StringUtils.join(pojazd.getMarka(), pojazd.getModel(), pojazd.getNumerRejestracyjny(), pojazd.getPrzebieg(), pojazd.getVin()).isEmpty()) {
@@ -136,7 +136,7 @@ public class OfertaController {
             });
             elementRepository.saveAll(elementySerwisowe);
             o.setElementySerwisowe(elementySerwisowe);
-            ofertaForm.setDataUtworzenia(new Date());
+            ofertaForm.setEdytowano(new Date());
             ofertaService.recalculateAndSave(ofertaForm);
         });
 

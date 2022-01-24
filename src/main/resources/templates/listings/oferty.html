@@ -9,7 +9,7 @@
         <div class="button-wrapper">
             <a href="/oferty/dodaj" role="button">
                     <span class="button-content-wrapper">
-						<span class="button-text">Nowe oferta</span>
+						<span class="button-text">Nowa oferta</span>
 		            </span>
             </a>
         </div>
@@ -28,7 +28,7 @@
         <tbody>
         <tr th:each="item : ${oferty}">
             <td th:text="${item.id}"><a href="/oferty/${item.id}">Oferta</a></td>
-            <td th:text="${item.dataUtworzenia}"></td>
+            <td th:text="${item.edytowano}"></td>
             <td th:text="${item.pojazd?.marka + ' ' + item.pojazd?.model + ' '  + item.pojazd?.numerRejestracyjny}"></td>
             <td><a th:href="@{/oferty/edytuj/{id}(id=${item.id})}">Edytuj</a></td>
             <td><a th:href="@{/oferty/usun/{id}(id=${item.id})}">Usuń</a></td>

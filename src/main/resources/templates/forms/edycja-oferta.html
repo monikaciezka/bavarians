@@ -11,7 +11,7 @@
 		 </span>
     </form>
 
-    <form method="POST" class="table" th:object="${ofertaForm}" th:action="@{/oferty/edytuj/{id}(id=${id})}">
+    <form method="POST" class="table" th:object="${ofertaForm}" th:action="@{/oferty/edytuj/{id}(id=${ofertaForm.id})}">
         <div class="float-right">
             <a th:href="@{/oferty/{id}(id=${ofertaForm.id})}">Podgląd</a>
         </div>

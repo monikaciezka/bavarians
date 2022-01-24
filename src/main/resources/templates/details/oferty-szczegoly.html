@@ -11,7 +11,13 @@
         <form id="logoutForm" method="POST" th:action="@{/logout}">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
-
+        <div class="button-wrapper float-right">
+            <a th:href="@{/oferty/edytuj/{id}(id=${oferta.id})}" role="button">
+                    <span class="button-content-wrapper">
+						<span class="button-text">Wróć do edycji</span>
+		            </span>
+            </a>
+        </div>
 
         <div class="oferta-head">
 
@@ -43,7 +49,7 @@
                 <th width="60%">Opis</th>
                 <th>Cena robocizny (netto)</th>
                 <th>Cena części (brutto)</th>
-                <th>Usuń</th>
+<!--                <th>Usuń</th>-->
             </tr>
             </thead>
             <tbody>
@@ -51,7 +57,7 @@
                 <td width="60%" th:text="${item.nazwa}"></td>
                 <td th:text="${item.cenaRobociznyNetto}"></td>
                 <td th:text="${item.cenaCzesciBrutto}"></td>
-                <td><a th:href="@{/oferty/{ofertaId}/elementy/usun/{id}(id=${item.id},ofertaId=${oferta.id})}">Usuń</a></td>
+<!--                <td><a th:href="@{/oferty/{ofertaId}/elementy/usun/{id}(id=${item.id},ofertaId=${oferta.id})}">Usuń</a></td>-->
             </tr>
             </tbody>
         </table>

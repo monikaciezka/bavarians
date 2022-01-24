@@ -13,8 +13,8 @@ public class Oferta {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "dataUtworzenia", nullable = false)
-    private Date dataUtworzenia;
+    @Column(name = "edytowano", nullable = false)
+    private Date edytowano;
 
     @Column(name = "dataRealizacji")
     private Date dataRealizacji;
@@ -48,9 +48,9 @@ public class Oferta {
     public Oferta() {
     }
 
-    public Oferta(Long id, Date dataUtworzenia, Date dataRealizacji, String status, boolean zrealizowana, Pojazd pojazd, List<Element> elementySerwisowe) {
+    public Oferta(Long id, Date edytowano, Date dataRealizacji, String status, boolean zrealizowana, Pojazd pojazd, List<Element> elementySerwisowe) {
         this.id = id;
-        this.dataUtworzenia = dataUtworzenia;
+        this.edytowano = edytowano;
         this.dataRealizacji = dataRealizacji;
         this.status = status;
         this.zrealizowana = zrealizowana;
@@ -66,12 +66,12 @@ public class Oferta {
         this.id = id;
     }
 
-    public Date getDataUtworzenia() {
-        return dataUtworzenia;
+    public Date getEdytowano() {
+        return edytowano;
     }
 
-    public void setDataUtworzenia(Date dataUtworzenia) {
-        this.dataUtworzenia = dataUtworzenia;
+    public void setEdytowano(Date edytowano) {
+        this.edytowano = edytowano;
     }
 
     public Date getDataRealizacji() {
@@ -149,7 +149,7 @@ public class Oferta {
     @Override
     public String toString() {
         return "Oferta{" +
-                "dataUtworzenia=" + dataUtworzenia +
+                "edytowano=" + edytowano +
                 ", dataRealizacji=" + dataRealizacji +
                 ", status='" + status + '\'' +
                 ", zrealizowana=" + zrealizowana +

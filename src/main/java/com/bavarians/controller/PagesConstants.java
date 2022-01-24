@@ -4,14 +4,19 @@ public class PagesConstants {
 
     public static final String LOGIN_PAGE = "login";
     public static final String WELCOME_PAGE = "welcome";
+    public static final String REGISTRATION_PAGE = "forms/registration";
 
     public static final String ELEMENTY_PAGE = "elementy";
 
 
     public static final String NOWA_OFERTA_PAGE = "forms/nowa-oferta";
     public static final String EDYCJA_OFERTA_PAGE = "forms/edycja-oferta";
-    public static final String REGISTRATION_PAGE = "forms/registration";
 
+    public static final String NOWY_POJAZD_PAGE = "forms/nowy-pojazd";
+    public static final String EDYCJA_POJAZD_PAGE = "forms/edycja-pojazd";
+
+    public static final String NOWY_KLIENT_PAGE = "forms/nowy-klient";
+    public static final String EDYCJA_KLIENT_PAGE = "forms/edycja-klient";
 
     public static final String OFERTY_SZCZEGOLY_PAGE = "details/oferty-szczegoly";
 
