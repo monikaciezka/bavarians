@@ -23,7 +23,7 @@ import java.util.stream.Stream;
 public class PdfCreator {
 
     public static final int FIXED_HEIGHT = 20;
-    public static final String STATIC_IMG_BAVARIANS_LOGO_PNG = "static/img/bavarians-logo.png";
+    public static final String STATIC_IMG_BAVARIANS_LOGO_PNG = "target/classes/static/img/bavarians-logo.png";
     public static final String BAVARIANS_ADRIAN_DABROWSKI = "Bavarians Adrian Dąbrowski";
     public static final String UL_NOWOWIEJSKA_88 = "ul. Nowowiejska 88";
     public static final String POGROSZEW_KOLONIA = "05-850 Pogroszew-Kolonia";
@@ -182,7 +182,7 @@ public class PdfCreator {
     }
 
     private Image getLogo() throws BadElementException, IOException {
-        String absolutePath = ResourceUtils.getFile("classpath:" + STATIC_IMG_BAVARIANS_LOGO_PNG).getAbsolutePath();
+        String absolutePath = ResourceUtils.getFile(STATIC_IMG_BAVARIANS_LOGO_PNG).getPath();
         return Image.getInstance(absolutePath);
     }
 }

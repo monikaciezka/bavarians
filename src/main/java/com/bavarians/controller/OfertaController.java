@@ -155,7 +155,7 @@ public class OfertaController {
         });
 
 
-        return "redirect:/oferty/edytuj/" + id;
+        return "redirect:/oferty/" + id;
     }
 
     @GetMapping("/pdf/{id}")
