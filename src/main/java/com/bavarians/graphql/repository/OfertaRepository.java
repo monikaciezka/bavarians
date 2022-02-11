@@ -16,9 +16,13 @@ public interface OfertaRepository extends JpaRepository<Oferta, Long> {
     @Query("from oferta o left join pojazd p on o.pojazd=p.id where o.id =?1")
     Oferta findOneWithPojazd(Long id);
 
-    @Query(value = "select o.id from oferta o left join pojazd p on o.pojazd_id=p.id left join element_serwisowy e on e.oferta_id = o.id where o.id =?1 GROUP BY o.id",nativeQuery = true)
+    @Query(value = "select o.id from oferta o left join pojazd p on o.pojazd_id=p.id left join element_serwisowy e on e.oferta_id = o.id where o.id =?1 GROUP BY o.id", nativeQuery = true)
     Oferta findOneWithPojazdAndElements(Long id);
 
     @Query("from oferta o left join pojazd p on o.pojazd = p.id left join element e on e.oferta = o.id where o.id =?1 GROUP BY o.id")
     Oferta findOneWithPojazdAndElements2(Long id);
+
+     @Query("from oferta o left join pojazd p on o.pojazd = p.id left join element e on e.oferta = o.id GROUP BY o.id, p.id, e.id ORDER BY o.edytowano DESC")
+   // @Query(value = "select * from oferta o left join pojazd p on o.pojazd_id=p.id left join element_serwisowy e on e.oferta_id = o.id GROUP BY o.id, p.id, e.id", nativeQuery = true)
+    List<Oferta> findAllWithPojazdAndElements();
 }
